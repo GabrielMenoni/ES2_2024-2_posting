@@ -3,9 +3,15 @@
 ## Integrantes:
 Luiz Otávio Teixeira Mello - 811967
 
+https://github.com/LuizOt31
+
 Gabriel Fernandes Menoni - 815773
 
+https://github.com/GabrielMenoni
+
 Antônio Cicero Amorim de Azevedo - 811455
+
+https://github.com/azmovi
 
 
 # Posting
