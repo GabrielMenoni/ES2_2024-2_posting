@@ -210,6 +210,17 @@ SendRequestButton {
   }
 }
 
+BooleanButton {
+  min-width: 8;
+  background: #00FFFF;
+  color: $text-accent;
+  text-style: b;
+  &:hover {
+      background-tint: $text-accent 10%;
+  }
+
+}
+
 KeyValueInput {
   height: auto;
   width: 1fr;

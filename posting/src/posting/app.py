@@ -1,4 +1,7 @@
 import inspect
+import json
+import os
+from datetime import datetime
 from contextlib import redirect_stdout, redirect_stderr
 from pathlib import Path
 from typing import Any, Literal, cast
@@ -74,6 +77,8 @@ from posting.widgets.response.script_output import ScriptOutput
 from posting.widgets.rich_log import RichLogIO
 from posting.xresources import load_xresources_themes
 
+
+FLAG = False
 
 class AppHeader(Horizontal):
     """The header of the app."""
@@ -383,7 +388,22 @@ class MainScreen(Screen[None]):
                 response = await client.send(
                     request=request,
                     follow_redirects=request_options.follow_redirects,
-                )
+            )
+                if FLAG:
+                    diretorio = 'archives'
+                    if not os.path.exists(diretorio):
+                        os.makedirs(diretorio)
+
+                    name = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
+                    with open(f'archives/{name}.txt', 'w') as f:
+                        try:
+                            data = response.json()
+                            formatted_text = json.dumps(data, indent=4, ensure_ascii=False)
+                        except json.JSONDecodeError:
+                            formatted_text = response.text
+
+                        f.write(formatted_text)
+
                 print("response cookies =", response.cookies)
                 self.post_message(HttpResponseReceived(response))
 
@@ -437,6 +457,15 @@ class MainScreen(Screen[None]):
     def handle_submit_via_event(self) -> None:
         """Send the request."""
         self.send_via_worker()
+
+    @on(Button.Pressed, selector="BooleanButton")
+    def xpto(self) -> None:
+        global FLAG
+        FLAG = not FLAG
+        self.notify(
+            title="Change button value",
+            message=str(FLAG),
+        )
 
     @on(HttpResponseReceived)
     def on_response_received(self, event: HttpResponseReceived) -> None:

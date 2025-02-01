@@ -122,6 +122,11 @@ class SendRequestButton(Button, can_focus=False):
     The button for sending the request.
     """
 
+class BooleanButton(Button, can_focus=False):
+    """
+    The button for allowed json response in external file
+    """
+
 
 class UrlBar(Vertical):
     """
@@ -158,6 +163,7 @@ class UrlBar(Vertical):
                 id="url-input",
             )
             yield Label(id="trace-markers")
+            yield BooleanButton("Save Response")
             yield SendRequestButton("Send")
 
         variable_value_bar = Label(id="variable-value-bar")
