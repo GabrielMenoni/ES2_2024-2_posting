@@ -863,6 +863,13 @@ class Posting(App[None], inherit_bindings=False):
             tooltip="Open the help dialog for the currently focused widget.",
             id="help",
         ),
+        Binding(
+            "ctrl+b",
+            "switch_background",
+            description="Background",
+            tooltip="Change background color",
+            id="backcolor",
+        ),
         Binding("f8", "save_screenshot", "Save screenshot.", show=False),
     ]
 
@@ -1050,6 +1057,15 @@ class Posting(App[None], inherit_bindings=False):
         self,
     ) -> str:
         return self.save_screenshot()
+
+    def action_switch_background(self) -> None:
+        if self.theme == 'textual-light':
+            self.theme = 'galaxy'
+        else:
+            self.theme = 'textual-light'
+
+        self.notify(title='Change background theme to:', message=self.theme)
+        self.watch_themes()
 
     @on(CommandPalette.Opened)
     def palette_opened(self) -> None:
