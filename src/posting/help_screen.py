@@ -26,7 +26,7 @@ class Helpable(Protocol):
     """Widgets which contain information to be displayed in the HelpScreen
     should implement this protocol."""
 
-    help: HelpData
+    help_data: HelpData
 
 
 class HelpModalHeader(Label):
@@ -140,12 +140,12 @@ class HelpScreen(ModalScreen[None]):
             widget = self.widget
             # If the widget has help text, render it.
             if isinstance(widget, Helpable):
-                help = widget.help
-                help_title = help.title
+                help_data = widget.help_data
+                help_title = help_data.title
                 vs.border_title = f"[not bold]Focused Widget Help ([b]{help_title}[/])"
                 if help_title:
                     yield HelpModalHeader(f"[b]{help_title}[/]")
-                help_markdown = help.description
+                help_markdown = help_data.description
 
                 if help_markdown:
                     help_markdown = help_markdown.strip()
@@ -153,7 +153,7 @@ class HelpScreen(ModalScreen[None]):
                         yield Markdown(help_markdown, id="help-description")
                 else:
                     yield Label(
-                        f"No help available for {help.title}",
+                        f"No help available for {help_data.title}",
                         id="help-description",
                     )
             else:
@@ -197,3 +197,4 @@ class HelpScreen(ModalScreen[None]):
                 yield HelpModalFocusNote(
                     "[b]Note:[/] This page relates to the widget that is currently focused."
                 )
+

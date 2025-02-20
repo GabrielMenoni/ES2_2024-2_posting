@@ -21,7 +21,6 @@ class PostingInput(Input):
         self.app.theme_changed_signal.subscribe(self, self.on_theme_change)
 
     def render(self) -> RenderResult:
-        self.view_position = self.view_position
         if not self.value:
             placeholder = Text(self.placeholder, justify="left")
             placeholder.stylize(self.get_component_rich_style("input--placeholder"))
