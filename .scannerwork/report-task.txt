@@ -1,0 +1,6 @@
+projectKey=ES2_2024-2_posting
+serverUrl=http://localhost:9000
+serverVersion=25.2.0.102705
+dashboardUrl=http://localhost:9000/dashboard?id=ES2_2024-2_posting
+ceTaskId=f7022cbb-ebd2-47af-99b1-b574e4735e50
+ceTaskUrl=http://localhost:9000/api/ce/task?id=f7022cbb-ebd2-47af-99b1-b574e4735e50
