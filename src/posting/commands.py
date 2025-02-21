@@ -18,6 +18,7 @@ class PostingProvider(Provider):
         commands_to_show: list[tuple[str, IgnoreReturnCallbackType, str, bool]] = []
 
         from posting.app import MainScreen
+        
 
         if isinstance(screen, MainScreen):
             # Only show the option to change to the layout which isn't the current one.
@@ -116,6 +117,11 @@ class PostingProvider(Provider):
                     True,
                 ),
             )
+        print("\n🚨 Debug dentro de PostingProvider.commands 🚨")  # <-- ADICIONADO
+        print(f"Screen: {self.screen}")  # <-- ADICIONADO
+        print(f"Screen query: {self.screen.query('HelpPanel')}")  # <-- ADICIONADO
+        print(f"Commands antes de retornar: {commands_to_show}")  # <-- ADICIONADO
+        print("=======================================\n")  # <-- ADICIONADO
 
         return tuple(commands_to_show)
 
