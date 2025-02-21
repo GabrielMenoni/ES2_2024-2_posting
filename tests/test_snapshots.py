@@ -153,6 +153,25 @@ class TestCommandPalette:
 
         assert snap_compare(POSTING_MAIN, run_before=run_before)
 
+    def test_loads_and_shows_discovery_options_2(self, snap_compare):
+        """Check that the command palette loads."""
+
+        async def run_before(pilot: Pilot):
+            await pilot.press("ctrl+p")
+            await disable_blink_for_active_cursors(pilot)
+            for i in range(6):
+                pilot.press("down")
+            pilot.press("enter")
+
+            await pilot.press("ctrl+p")
+            for i in range(6):
+                pilot.press("down")
+            pilot.press("enter")
+
+        assert snap_compare(
+            POSTING_MAIN, run_before=run_before, terminal_size=(120, 34)
+        )
+
 
 @use_config("general.yaml")
 @patch_env("POSTING_FOCUS__ON_STARTUP", "collection")
