@@ -1,0 +1,21 @@
+{
+    "args": {
+        "something": "123"
+    },
+    "headers": {
+        "host": "postman-echo.com",
+        "x-request-start": "t1740142157.043",
+        "connection": "close",
+        "content-length": "13",
+        "x-forwarded-proto": "https",
+        "x-forwarded-port": "443",
+        "x-amzn-trace-id": "Root=1-67b8764d-745d9e1a6006078c69be276b",
+        "accept": "*/*",
+        "accept-encoding": "gzip, deflate, br",
+        "user-agent": "Posting/2.3.0 (Terminal-based API client)",
+        "x-setup-var": "ADDED IN SETUP",
+        "content-type": "application/x-www-form-urlencoded",
+        "x-custom-header": "Foo-Bar-Baz!!!!!"
+    },
+    "url": "https://postman-echo.com/get"
+}
