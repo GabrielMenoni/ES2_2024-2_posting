@@ -427,6 +427,21 @@ class TestCustomThemeSimple:
 
         assert snap_compare(POSTING_MAIN, run_before=run_before)
 
+    def test_light_theme(self, snap_compare):
+        """Check that the theme bind for alterate colorscheme"""
+        env_path = str((ENV_DIR / "sample_base.env").resolve())
+        app = make_posting(
+            collection=SAMPLE_COLLECTIONS / "jsonplaceholder" / "todos",
+            env=(env_path,),
+        )
+
+        async def run_before(pilot: Pilot):
+            await pilot.press("ctrl+b")
+            await disable_blink_for_active_cursors(pilot)
+            await pilot.press(*"anothertest")
+
+        assert snap_compare(app, run_before=run_before)
+
     def test_theme_sensible_defaults__url(self, snap_compare):
         """This theme doesn't specify explicit values for the URL
         or variable highlights, so we should expect sensible
